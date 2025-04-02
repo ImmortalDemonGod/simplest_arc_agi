@@ -28,6 +28,11 @@ def get_device() -> str:
     Get device to use for training
     
     Returns:
-        'cuda' if GPU is available, 'cpu' otherwise
+        'cuda' if NVIDIA GPU is available, 'mps' if Apple Silicon GPU is available, 'cpu' otherwise
     """
-    return "cuda" if torch.cuda.is_available() else "cpu" 
+    if torch.cuda.is_available():
+        return "cuda"
+    elif hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
+        return "mps"
+    else:
+        return "cpu" 
