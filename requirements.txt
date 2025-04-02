@@ -1,5 +1,46 @@
-torch>=2.0.0
-numpy>=1.22.0
-matplotlib>=3.5.0
+# Core dependencies
+numpy>=1.20.0
+torch>=1.10.0
+transformers>=4.15.0
+scipy>=1.7.0
+matplotlib>=3.4.0
+pandas>=1.3.0
+scikit-learn>=1.0.0
+networkx>=2.6.0
+
+# Data processing
+h5py>=3.1.0
+pillow>=8.3.0
+pyarrow>=6.0.0
+
+# Machine learning tools
+einops>=0.4.0
+lightning>=2.0.0
+optuna>=2.10.0
+accelerate>=0.10.0
+
+# Circuit extraction and analysis
+jaxtyping>=0.2.0
+typeguard>=2.13.0
+nnsight>=0.1.0
+
+# Database
+sqlitedict>=1.7.0
+pydantic>=1.9.0
+
+# Visualization
+plotly>=5.3.0
+seaborn>=0.11.0
+ipywidgets>=7.6.0
+
+# Documentation
+mkdocs>=1.2.0
+mkdocs-material>=8.0.0
+pymdown-extensions>=9.0
+
+# Utilities
 tqdm>=4.62.0
-scikit-learn>=1.0.0 
+click>=8.0.0
+pyyaml>=6.0
+rich>=10.0.0
+typer>=0.4.0 

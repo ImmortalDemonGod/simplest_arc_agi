@@ -1,0 +1,1638 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the Neural Circuit Extraction and Modular Composition Framework">
+      
+      
+        <meta name="author" content="ARC AGI Team">
+      
+      
+      
+        <link rel="prev" href="../components/modular_composition/">
+      
+      
+        <link rel="next" href="../arc_evaluation/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>Implementation Roadmap - Neural Circuit Extraction Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#implementation-roadmap" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Neural Circuit Extraction Framework" class="md-header__button md-logo" aria-label="Neural Circuit Extraction Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Neural Circuit Extraction Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Implementation Roadmap
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/yourusername/simplest_arc_agi" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    yourusername/simplest_arc_agi
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Neural Circuit Extraction Framework" class="md-nav__button md-logo" aria-label="Neural Circuit Extraction Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Neural Circuit Extraction Framework
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/yourusername/simplest_arc_agi" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    yourusername/simplest_arc_agi
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Components
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../components/data_generation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Generation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../components/transformer_architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transformer Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../components/training_pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Training Pipeline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../components/scalability/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scalability
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../components/circuit_database/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Circuit Database
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../components/explanation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Explanation & Interpretability
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../components/modular_composition/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modular Composition
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Implementation Roadmap
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Implementation Roadmap
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#phase-1-foundation-baseline-months-1-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 1: Foundation &amp; Baseline (Months 1-3)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 1: Foundation &amp; Baseline (Months 1-3)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-generator-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Generator v1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transformer-prototype-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transformer Prototype v1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#training-framework-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Training Framework v1
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-2-parallelization-efficiency-optimization-months-4-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 2: Parallelization, Efficiency &amp; Optimization (Months 4-6)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 2: Parallelization, Efficiency &amp; Optimization (Months 4-6)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#concurrent-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concurrent Training
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#efficiency-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Efficiency Techniques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hpo-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      HPO Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-3-extraction-cataloging-visualization-months-7-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 3: Extraction, Cataloging &amp; Visualization (Months 7-9)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 3: Extraction, Cataloging &amp; Visualization (Months 7-9)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#circuit-extraction-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Circuit Extraction v1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database v1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visualization-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visualization v1
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-4-modular-composition-rd-months-10-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 4: Modular Composition R&amp;D (Months 10-12+)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 4: Modular Composition R&amp;D (Months 10-12+)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interface-definition-standardization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interface Definition &amp; Standardization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#composition-engine-v01" class="md-nav__link">
+    <span class="md-ellipsis">
+      Composition Engine v0.1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-representation-v01" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Representation v0.1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-intervention" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation &amp; Intervention
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm-integration-exploratory" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLM Integration (Exploratory)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-5-scaling-refinement-automation-ongoing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 5: Scaling, Refinement &amp; Automation (Ongoing)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 5: Scaling, Refinement &amp; Automation (Ongoing)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#expanded-task-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expanded Task Library
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Scaling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Extraction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sophisticated-composition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sophisticated Composition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enhanced-llm-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enhanced LLM Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arc_evaluation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ARC Evaluation Protocol
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../future_directions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Future Directions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/data_generation.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Generation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/models.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/training.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Training
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/database.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Database
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Tutorials
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/getting_started.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/training.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Training a Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/extraction.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Extracting Circuits
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/composition.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Composing Circuits
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#phase-1-foundation-baseline-months-1-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 1: Foundation &amp; Baseline (Months 1-3)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 1: Foundation &amp; Baseline (Months 1-3)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-generator-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Generator v1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transformer-prototype-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transformer Prototype v1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#training-framework-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Training Framework v1
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-2-parallelization-efficiency-optimization-months-4-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 2: Parallelization, Efficiency &amp; Optimization (Months 4-6)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 2: Parallelization, Efficiency &amp; Optimization (Months 4-6)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#concurrent-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concurrent Training
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#efficiency-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Efficiency Techniques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hpo-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      HPO Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-3-extraction-cataloging-visualization-months-7-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 3: Extraction, Cataloging &amp; Visualization (Months 7-9)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 3: Extraction, Cataloging &amp; Visualization (Months 7-9)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#circuit-extraction-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Circuit Extraction v1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database v1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visualization-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visualization v1
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-4-modular-composition-rd-months-10-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 4: Modular Composition R&amp;D (Months 10-12+)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 4: Modular Composition R&amp;D (Months 10-12+)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interface-definition-standardization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interface Definition &amp; Standardization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#composition-engine-v01" class="md-nav__link">
+    <span class="md-ellipsis">
+      Composition Engine v0.1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-representation-v01" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Representation v0.1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-intervention" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation &amp; Intervention
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm-integration-exploratory" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLM Integration (Exploratory)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-5-scaling-refinement-automation-ongoing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 5: Scaling, Refinement &amp; Automation (Ongoing)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 5: Scaling, Refinement &amp; Automation (Ongoing)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#expanded-task-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expanded Task Library
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Scaling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Extraction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sophisticated-composition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sophisticated Composition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enhanced-llm-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enhanced LLM Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="implementation-roadmap">Implementation Roadmap<a class="headerlink" href="#implementation-roadmap" title="Permanent link">&para;</a></h1>
+<p>This roadmap outlines our phased approach to developing the Neural Circuit Extraction and Modular Composition Framework.</p>
+<h2 id="phase-1-foundation-baseline-months-1-3">Phase 1: Foundation &amp; Baseline (Months 1-3)<a class="headerlink" href="#phase-1-foundation-baseline-months-1-3" title="Permanent link">&para;</a></h2>
+<p>In this initial phase, we establish the core infrastructure and validate the basic approach:</p>
+<h3 id="data-generator-v1">Data Generator v1<a class="headerlink" href="#data-generator-v1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Implement core <code>arc_types</code> functions for basic operations</li>
+<li>Develop generator for binary operation datasets (modular arithmetic)</li>
+<li>Create basic validation and testing procedures</li>
+</ul>
+<h3 id="transformer-prototype-v1">Transformer Prototype v1<a class="headerlink" href="#transformer-prototype-v1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Build small baseline transformer (2-layer, 128-width)</li>
+<li>Incorporate FlashAttention for performance optimization</li>
+<li>Validate on simple tasks like <code>add_mod_97</code></li>
+</ul>
+<h3 id="training-framework-v1">Training Framework v1<a class="headerlink" href="#training-framework-v1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Set up basic infrastructure using Ray + W&amp;B for experiment tracking</li>
+<li>Implement tools for launching, monitoring, and logging single training jobs</li>
+<li>Tune hyperparameters for efficient generalization (grokking) on baseline tasks</li>
+</ul>
+<p><strong>Milestones:</strong>
+- ✅ Successfully train models that exhibit grokking on simple algorithmic tasks
+- ✅ Basic training infrastructure operational
+- ✅ Demonstrable generalization on held-out test data</p>
+<h2 id="phase-2-parallelization-efficiency-optimization-months-4-6">Phase 2: Parallelization, Efficiency &amp; Optimization (Months 4-6)<a class="headerlink" href="#phase-2-parallelization-efficiency-optimization-months-4-6" title="Permanent link">&para;</a></h2>
+<p>In this phase, we focus on scaling our infrastructure and improving model efficiency:</p>
+<h3 id="concurrent-training">Concurrent Training<a class="headerlink" href="#concurrent-training" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Scale the framework to manage multiple concurrent training jobs</li>
+<li>Implement resource management across different tasks and hyperparameter settings</li>
+<li>Develop tools for comparing results across experiments</li>
+</ul>
+<h3 id="efficiency-techniques">Efficiency Techniques<a class="headerlink" href="#efficiency-techniques" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Integrate and systematically evaluate model pruning</li>
+<li>Implement LoRA adapters for efficient fine-tuning</li>
+<li>Analyze impact on generalization speed, final accuracy, parameter count, and inference latency</li>
+</ul>
+<h3 id="hpo-integration">HPO Integration<a class="headerlink" href="#hpo-integration" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Integrate automated hyperparameter optimization tools (Optuna, Ray Tune)</li>
+<li>Develop search spaces and optimization metrics</li>
+<li>Validate HPO effectiveness across different tasks</li>
+</ul>
+<p><strong>Milestones:</strong>
+- ✅ Demonstrate concurrent training of 10+ experiments
+- ✅ Achieve 30%+ parameter reduction with minimal accuracy loss through pruning
+- ✅ Show successful task-specific adaptation using LoRA</p>
+<h2 id="phase-3-extraction-cataloging-visualization-months-7-9">Phase 3: Extraction, Cataloging &amp; Visualization (Months 7-9)<a class="headerlink" href="#phase-3-extraction-cataloging-visualization-months-7-9" title="Permanent link">&para;</a></h2>
+<p>This phase focuses on extracting and understanding the circuits within our trained models:</p>
+<h3 id="circuit-extraction-v1">Circuit Extraction v1<a class="headerlink" href="#circuit-extraction-v1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Implement CLT/dictionary learning pipeline</li>
+<li>Develop attribution graph generation tools</li>
+<li>Extract and analyze circuits from baseline models (and pruned/LoRA variants)</li>
+</ul>
+<h3 id="database-v1">Database v1<a class="headerlink" href="#database-v1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Design and implement the database schema with <code>interface_definition</code></li>
+<li>Create a functional system for storing task, model, training, and circuit data</li>
+<li>Develop APIs for querying and retrieving circuits</li>
+</ul>
+<h3 id="visualization-v1">Visualization v1<a class="headerlink" href="#visualization-v1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Develop tools for visualizing loss/accuracy curves</li>
+<li>Create interactive attribution graph visualizers</li>
+<li>Implement feature activation pattern visualization</li>
+</ul>
+<p><strong>Milestones:</strong>
+- ✅ Successfully extract interpretable circuits from at least 5 different algorithmic tasks
+- ✅ Operational database with 20+ cataloged circuits
+- ✅ Interactive visualization tools for exploring circuits</p>
+<h2 id="phase-4-modular-composition-rd-months-10-12">Phase 4: Modular Composition R&amp;D (Months 10-12+)<a class="headerlink" href="#phase-4-modular-composition-rd-months-10-12" title="Permanent link">&para;</a></h2>
+<p>In this phase, we focus on composing circuits to solve more complex tasks:</p>
+<h3 id="interface-definition-standardization">Interface Definition &amp; Standardization<a class="headerlink" href="#interface-definition-standardization" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Analyze extracted representations to understand interface characteristics</li>
+<li>Define standards/methods for circuit interfaces</li>
+<li>Document interface requirements in the database</li>
+</ul>
+<h3 id="composition-engine-v01">Composition Engine v0.1<a class="headerlink" href="#composition-engine-v01" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Develop prototype methods for composing 2-3 circuits functionally</li>
+<li>Implement hardcoded static pipelines for testing</li>
+<li>Validate on slightly more complex tasks (e.g., <code>(a+b)*c</code>)</li>
+</ul>
+<h3 id="code-representation-v01">Code Representation v0.1<a class="headerlink" href="#code-representation-v01" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Experiment with representing compositions in a code-like format</li>
+<li>Develop a simple DSL (Domain-Specific Language) for circuit composition</li>
+<li>Create parsers/interpreters for the composition language</li>
+</ul>
+<h3 id="validation-intervention">Validation &amp; Intervention<a class="headerlink" href="#validation-intervention" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Develop methods to validate composed circuits</li>
+<li>Implement targeted testing and intervention experiments</li>
+<li>Create tools for patching intermediate results</li>
+</ul>
+<h3 id="llm-integration-exploratory">LLM Integration (Exploratory)<a class="headerlink" href="#llm-integration-exploratory" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Begin experiments using LLMs to query the circuit database</li>
+<li>Test LLM's ability to suggest compositions based on natural language descriptions</li>
+<li>Explore prompting strategies for effective LLM assistance</li>
+</ul>
+<p><strong>Milestones:</strong>
+- ✅ Demonstrate successful composition of 2+ circuits to solve a new task
+- ✅ Working prototype of code-like representation for compositions
+- ✅ Initial proof-of-concept for LLM-assisted composition</p>
+<h2 id="phase-5-scaling-refinement-automation-ongoing">Phase 5: Scaling, Refinement &amp; Automation (Ongoing)<a class="headerlink" href="#phase-5-scaling-refinement-automation-ongoing" title="Permanent link">&para;</a></h2>
+<p>This ongoing phase focuses on expanding capabilities and increasing automation:</p>
+<h3 id="expanded-task-library">Expanded Task Library<a class="headerlink" href="#expanded-task-library" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Add more diverse and complex algorithmic problems</li>
+<li>Generate larger datasets for more challenging tasks</li>
+<li>Develop curriculum learning approaches</li>
+</ul>
+<h3 id="model-scaling">Model Scaling<a class="headerlink" href="#model-scaling" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Scale model sizes as needed for more complex tasks</li>
+<li>Optimize training infrastructure for larger models</li>
+<li>Investigate scaling relationships for algorithmic learning</li>
+</ul>
+<h3 id="advanced-extraction">Advanced Extraction<a class="headerlink" href="#advanced-extraction" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Refine circuit extraction techniques for better interpretability</li>
+<li>Improve fidelity of extracted circuits</li>
+<li>Develop automated circuit discovery methods</li>
+</ul>
+<h3 id="sophisticated-composition">Sophisticated Composition<a class="headerlink" href="#sophisticated-composition" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Develop dynamic routing mechanisms</li>
+<li>Implement automated interface adaptation</li>
+<li>Create tools for handling errors and uncertainty in compositions</li>
+</ul>
+<h3 id="enhanced-llm-integration">Enhanced LLM Integration<a class="headerlink" href="#enhanced-llm-integration" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Deepen LLM integration for automated composition</li>
+<li>Implement verification of LLM-suggested compositions</li>
+<li>Explore LLM generation of glue code for interfaces</li>
+</ul>
+<p><strong>Milestones:</strong>
+- Demonstrate solving complex algorithmic tasks beyond individual model capacity
+- Achieve high automation in circuit extraction and composition
+- Show robust performance across a diverse set of tasks </p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/yourusername/simplest_arc_agi" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.indexes", "toc.follow", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

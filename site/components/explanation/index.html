@@ -1,0 +1,1667 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the Neural Circuit Extraction and Modular Composition Framework">
+      
+      
+        <meta name="author" content="ARC AGI Team">
+      
+      
+      
+        <link rel="prev" href="../circuit_database/">
+      
+      
+        <link rel="next" href="../modular_composition/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>Explanation & Interpretability - Neural Circuit Extraction Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#explanation-and-interpretability" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Neural Circuit Extraction Framework" class="md-header__button md-logo" aria-label="Neural Circuit Extraction Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Neural Circuit Extraction Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Explanation & Interpretability
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/yourusername/simplest_arc_agi" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    yourusername/simplest_arc_agi
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Neural Circuit Extraction Framework" class="md-nav__button md-logo" aria-label="Neural Circuit Extraction Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Neural Circuit Extraction Framework
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/yourusername/simplest_arc_agi" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    yourusername/simplest_arc_agi
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Components
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_generation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Generation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transformer_architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transformer Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training_pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Training Pipeline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scalability/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scalability
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../circuit_database/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Circuit Database
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Explanation & Interpretability
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Explanation & Interpretability
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#principles-of-neural-interpretability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principles of Neural Interpretability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extraction-methodologies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extraction Methodologies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extraction Methodologies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-cross-layer-transcoders-clts" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Cross-Layer Transcoders (CLTs)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-attribution-graph-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Attribution Graph Construction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-iterative-circuit-refinement" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Iterative Circuit Refinement
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interpretability-database-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interpretability Database Schema
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explanation-generation-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation Generation System
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Explanation Generation System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explanation-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation Types
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-exploration-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interactive Exploration Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interactive Exploration Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-circuit-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Circuit Browser
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-explanation-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Explanation Dashboard
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-and-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing and Validation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing and Validation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#intervention-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intervention Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#falsification-challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Falsification Challenges
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#human-ai-collaborative-interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Human-AI Collaborative Interpretation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Human-AI Collaborative Interpretation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-human-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Human Role
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-ai-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      The AI Role
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation Status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-directions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Directions
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modular_composition/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modular Composition
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Implementation Roadmap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arc_evaluation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ARC Evaluation Protocol
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../future_directions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Future Directions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/data_generation.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Generation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/models.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/training.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Training
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/database.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Database
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Tutorials
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/getting_started.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/training.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Training a Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/extraction.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Extracting Circuits
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/composition.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Composing Circuits
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#principles-of-neural-interpretability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principles of Neural Interpretability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extraction-methodologies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extraction Methodologies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extraction Methodologies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-cross-layer-transcoders-clts" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Cross-Layer Transcoders (CLTs)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-attribution-graph-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Attribution Graph Construction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-iterative-circuit-refinement" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Iterative Circuit Refinement
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interpretability-database-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interpretability Database Schema
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explanation-generation-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation Generation System
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Explanation Generation System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explanation-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation Types
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-exploration-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interactive Exploration Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interactive Exploration Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-circuit-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Circuit Browser
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-explanation-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Explanation Dashboard
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-and-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing and Validation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing and Validation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#intervention-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intervention Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#falsification-challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Falsification Challenges
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#human-ai-collaborative-interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Human-AI Collaborative Interpretation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Human-AI Collaborative Interpretation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-human-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Human Role
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-ai-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      The AI Role
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation Status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-directions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Directions
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="explanation-and-interpretability">Explanation and Interpretability<a class="headerlink" href="#explanation-and-interpretability" title="Permanent link">&para;</a></h1>
+<p>This document outlines our approach to making neural network transformations interpretable, explainable, and composable through circuit extraction and analysis.</p>
+<h2 id="principles-of-neural-interpretability">Principles of Neural Interpretability<a class="headerlink" href="#principles-of-neural-interpretability" title="Permanent link">&para;</a></h2>
+<p>Our framework is built on these core principles:</p>
+<ol>
+<li><strong>Mechanistic Interpretability</strong>: Understanding the causal mechanisms within neural networks, not just input-output correlations</li>
+<li><strong>Composition-based Explanations</strong>: Describing network behavior as compositions of simpler, meaningful circuits</li>
+<li><strong>Human-aligned Concepts</strong>: Developing interpretations that align with human conceptual understanding</li>
+<li><strong>Falsifiability</strong>: Creating explanations that make testable predictions about model behavior</li>
+</ol>
+<h2 id="extraction-methodologies">Extraction Methodologies<a class="headerlink" href="#extraction-methodologies" title="Permanent link">&para;</a></h2>
+<p>Our system employs multiple complementary techniques:</p>
+<h3 id="1-cross-layer-transcoders-clts">1. Cross-Layer Transcoders (CLTs)<a class="headerlink" href="#1-cross-layer-transcoders-clts" title="Permanent link">&para;</a></h3>
+<p>CLTs use dictionary learning to identify meaningful dimensions in model activations:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CrossLayerTranscoder</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_layer</span><span class="p">,</span> <span class="n">target_layer</span><span class="p">,</span> <span class="n">dictionary_size</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source_layer</span> <span class="o">=</span> <span class="n">source_layer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_layer</span> <span class="o">=</span> <span class="n">target_layer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dictionary_size</span> <span class="o">=</span> <span class="n">dictionary_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dictionary</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">activations_dataset</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Train the transcoder dictionary on activation pairs.&quot;&quot;&quot;</span>
+        <span class="c1"># Dictionary learning implementation</span>
+        <span class="n">source_activations</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">source_layer</span><span class="p">]</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">activations_dataset</span><span class="p">]</span>
+        <span class="n">target_activations</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">target_layer</span><span class="p">]</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">activations_dataset</span><span class="p">]</span>
+
+        <span class="c1"># Use sparse coding / dictionary learning algorithm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dictionary</span> <span class="o">=</span> <span class="n">train_dictionary</span><span class="p">(</span><span class="n">source_activations</span><span class="p">,</span> <span class="n">target_activations</span><span class="p">,</span> 
+                                          <span class="bp">self</span><span class="o">.</span><span class="n">dictionary_size</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">decode_circuit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">circuit_idx</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract the circuit corresponding to dictionary element at circuit_idx.&quot;&quot;&quot;</span>
+        <span class="c1"># Return the weights and structure of the identified circuit</span>
+</code></pre></div>
+<p>Key capabilities:
+- Identifies information flows between layers
+- Reveals learned feature hierarchies 
+- Reduces dimensionality to human-interpretable concepts</p>
+<h3 id="2-attribution-graph-construction">2. Attribution Graph Construction<a class="headerlink" href="#2-attribution-graph-construction" title="Permanent link">&para;</a></h3>
+<p>We build attribution graphs to trace causal pathways through the network:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">build_attribution_graph</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">input_example</span><span class="p">,</span> <span class="n">target_output_node</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Build a graph of attribution scores between model components.&quot;&quot;&quot;</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+
+    <span class="c1"># Initialize with all nodes in the model</span>
+    <span class="k">for</span> <span class="n">layer_idx</span><span class="p">,</span> <span class="n">layer</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">neuron_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">output_size</span><span class="p">):</span>
+            <span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">((</span><span class="n">layer_idx</span><span class="p">,</span> <span class="n">neuron_idx</span><span class="p">))</span>
+
+    <span class="c1"># Calculate causal attribution between connected nodes</span>
+    <span class="k">for</span> <span class="n">layer_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">source_layer</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="n">layer_idx</span><span class="p">]</span>
+        <span class="n">target_layer</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="n">layer_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">source_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">source_layer</span><span class="o">.</span><span class="n">output_size</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">target_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">target_layer</span><span class="o">.</span><span class="n">output_size</span><span class="p">):</span>
+                <span class="n">attribution</span> <span class="o">=</span> <span class="n">calculate_causal_attribution</span><span class="p">(</span>
+                    <span class="n">model</span><span class="p">,</span> <span class="n">input_example</span><span class="p">,</span> <span class="p">(</span><span class="n">layer_idx</span><span class="p">,</span> <span class="n">source_idx</span><span class="p">),</span> <span class="p">(</span><span class="n">layer_idx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">target_idx</span><span class="p">)</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">attribution</span> <span class="o">&gt;</span> <span class="n">THRESHOLD</span><span class="p">:</span>
+                    <span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">((</span><span class="n">layer_idx</span><span class="p">,</span> <span class="n">source_idx</span><span class="p">),</span> <span class="p">(</span><span class="n">layer_idx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">target_idx</span><span class="p">),</span> 
+                                  <span class="n">weight</span><span class="o">=</span><span class="n">attribution</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">graph</span>
+</code></pre></div>
+<p>Key features:
+- Provides causal understanding of information flow
+- Identifies critical pathways for specific behaviors
+- Supports pruning to isolate essential components</p>
+<h3 id="3-iterative-circuit-refinement">3. Iterative Circuit Refinement<a class="headerlink" href="#3-iterative-circuit-refinement" title="Permanent link">&para;</a></h3>
+<p>We employ a systematic process for refining circuit understanding:</p>
+<ol>
+<li><strong>Hypothesis Generation</strong>: Use dictionary learning to identify candidate circuits</li>
+<li><strong>Causal Validation</strong>: Test causal effects by intervening on activations </li>
+<li><strong>Refinement</strong>: Iteratively refine circuit boundaries and connections</li>
+<li><strong>Documentation</strong>: Create human-readable descriptions with examples and counter-examples</li>
+</ol>
+<h2 id="interpretability-database-schema">Interpretability Database Schema<a class="headerlink" href="#interpretability-database-schema" title="Permanent link">&para;</a></h2>
+<p>Our database stores interpreted circuits with these fields:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>circuit_id</code></td>
+<td>Unique identifier</td>
+<td><code>"obj_translation_circuit_v2"</code></td>
+</tr>
+<tr>
+<td><code>human_concept</code></td>
+<td>Conceptual interpretation</td>
+<td><code>"Object translation/movement detector"</code></td>
+</tr>
+<tr>
+<td><code>formal_description</code></td>
+<td>Mathematical description</td>
+<td><code>"Computes translation vector between frames"</code></td>
+</tr>
+<tr>
+<td><code>evidence</code></td>
+<td>Supporting evidence</td>
+<td><code>[{test_type: "activation", result: "..."}]</code></td>
+</tr>
+<tr>
+<td><code>counter_examples</code></td>
+<td>Cases where interpretation fails</td>
+<td><code>[{input: "...", expected: "...", actual: "..."}]</code></td>
+</tr>
+<tr>
+<td><code>visualization</code></td>
+<td>Circuit visualization</td>
+<td><code>"path/to/visualization.html"</code></td>
+</tr>
+<tr>
+<td><code>composition</code></td>
+<td>Component subcircuits</td>
+<td><code>["edge_detector_v1", "motion_integrator_v3"]</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="explanation-generation-system">Explanation Generation System<a class="headerlink" href="#explanation-generation-system" title="Permanent link">&para;</a></h2>
+<p>Our explanation system generates human-understandable descriptions:</p>
+<h3 id="components">Components<a class="headerlink" href="#components" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Circuit Analyzer</strong>: Extracts statistical properties of circuit behavior</li>
+<li><strong>Natural Language Generator</strong>: Converts circuit analysis to human language</li>
+<li><strong>Example Selector</strong>: Chooses representative examples demonstrating the circuit</li>
+<li><strong>Visualization Engine</strong>: Creates visual representations of circuit function</li>
+</ol>
+<h3 id="explanation-types">Explanation Types<a class="headerlink" href="#explanation-types" title="Permanent link">&para;</a></h3>
+<p>We generate multiple types of explanations:</p>
+<ol>
+<li><strong>Functional Explanations</strong>: What the circuit computes (e.g., "This circuit detects vertical edges in the input")</li>
+<li><strong>Mechanistic Explanations</strong>: How the circuit implements its function (e.g., "The circuit combines outputs from neurons 47-52 which act as Gabor filters")</li>
+<li><strong>Behavioral Explanations</strong>: When and how the circuit activates (e.g., "This circuit strongly activates when vertical lines appear in the bottom left quadrant")</li>
+<li><strong>Compositional Explanations</strong>: How the circuit relates to other circuits (e.g., "This circuit builds on the basic edge detector to implement rotation invariance")</li>
+</ol>
+<h2 id="interactive-exploration-tools">Interactive Exploration Tools<a class="headerlink" href="#interactive-exploration-tools" title="Permanent link">&para;</a></h2>
+<p>Our system includes tools for interactively exploring circuits:</p>
+<h3 id="1-circuit-browser">1. Circuit Browser<a class="headerlink" href="#1-circuit-browser" title="Permanent link">&para;</a></h3>
+<p>An interactive interface for exploring the circuit database:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CircuitBrowser</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">circuit_db</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">circuit_db</span> <span class="o">=</span> <span class="n">circuit_db</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Search for circuits matching the query.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">circuit_db</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">visualize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">circuit_id</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate interactive visualization for the circuit.&quot;&quot;&quot;</span>
+        <span class="n">circuit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">circuit_db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">circuit_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_visualization</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">analyze_behavior</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">circuit_id</span><span class="p">,</span> <span class="n">test_inputs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Analyze circuit behavior on test inputs.&quot;&quot;&quot;</span>
+        <span class="n">circuit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">circuit_db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">circuit_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">input_id</span><span class="p">:</span> <span class="n">circuit</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="n">input_val</span><span class="p">)</span> <span class="k">for</span> <span class="n">input_id</span><span class="p">,</span> <span class="n">input_val</span> <span class="ow">in</span> <span class="n">test_inputs</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+</code></pre></div>
+<h3 id="2-explanation-dashboard">2. Explanation Dashboard<a class="headerlink" href="#2-explanation-dashboard" title="Permanent link">&para;</a></h3>
+<p>A dashboard for generating and customizing explanations:</p>
+<ul>
+<li>Select explanation detail level (simple/detailed)</li>
+<li>Choose explanation type (functional/mechanistic/etc.)</li>
+<li>Toggle between different visualization styles</li>
+<li>Compare explanations across multiple circuits</li>
+</ul>
+<h2 id="testing-and-validation">Testing and Validation<a class="headerlink" href="#testing-and-validation" title="Permanent link">&para;</a></h2>
+<p>We rigorously validate our interpretations:</p>
+<h3 id="intervention-testing">Intervention Testing<a class="headerlink" href="#intervention-testing" title="Permanent link">&para;</a></h3>
+<p>We test circuit interpretations by intervening in the network:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">validate_circuit_interpretation</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">circuit</span><span class="p">,</span> <span class="n">interpretation</span><span class="p">,</span> <span class="n">test_cases</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate whether a circuit interpretation is correct through interventions.&quot;&quot;&quot;</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">test_case</span> <span class="ow">in</span> <span class="n">test_cases</span><span class="p">:</span>
+        <span class="c1"># Get base model prediction</span>
+        <span class="n">base_prediction</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">test_case</span><span class="o">.</span><span class="n">input</span><span class="p">)</span>
+
+        <span class="c1"># Create intervention according to our interpretation</span>
+        <span class="n">intervention</span> <span class="o">=</span> <span class="n">create_intervention</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">interpretation</span><span class="p">,</span> <span class="n">test_case</span><span class="p">)</span>
+
+        <span class="c1"># Apply intervention and get new prediction</span>
+        <span class="n">intervention_prediction</span> <span class="o">=</span> <span class="n">apply_intervention_and_predict</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">circuit</span><span class="p">,</span> <span class="n">intervention</span><span class="p">,</span> <span class="n">test_case</span><span class="o">.</span><span class="n">input</span><span class="p">)</span>
+
+        <span class="c1"># Check if results match our hypothesis</span>
+        <span class="n">matches_hypothesis</span> <span class="o">=</span> <span class="n">test_intervention_hypothesis</span><span class="p">(</span>
+            <span class="n">interpretation</span><span class="p">,</span> <span class="n">test_case</span><span class="p">,</span> <span class="n">base_prediction</span><span class="p">,</span> <span class="n">intervention_prediction</span>
+        <span class="p">)</span>
+
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s2">&quot;test_case&quot;</span><span class="p">:</span> <span class="n">test_case</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">&quot;matches_hypothesis&quot;</span><span class="p">:</span> <span class="n">matches_hypothesis</span><span class="p">,</span>
+            <span class="s2">&quot;details&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;base_prediction&quot;</span><span class="p">:</span> <span class="n">base_prediction</span><span class="p">,</span>
+                <span class="s2">&quot;intervention_prediction&quot;</span><span class="p">:</span> <span class="n">intervention_prediction</span><span class="p">,</span>
+                <span class="s2">&quot;expected_change&quot;</span><span class="p">:</span> <span class="n">test_case</span><span class="o">.</span><span class="n">expected_change</span>
+            <span class="p">}</span>
+        <span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">results</span>
+</code></pre></div>
+<h3 id="falsification-challenges">Falsification Challenges<a class="headerlink" href="#falsification-challenges" title="Permanent link">&para;</a></h3>
+<p>We actively attempt to falsify our interpretations:</p>
+<ol>
+<li><strong>Adversarial Inputs</strong>: Generating inputs designed to break the interpretation</li>
+<li><strong>Edge Cases</strong>: Testing circuit behavior on boundary conditions</li>
+<li><strong>Counterfactual Analysis</strong>: Testing "what if" scenarios based on the interpretation</li>
+</ol>
+<h2 id="human-ai-collaborative-interpretation">Human-AI Collaborative Interpretation<a class="headerlink" href="#human-ai-collaborative-interpretation" title="Permanent link">&para;</a></h2>
+<p>We leverage both human insight and AI capabilities:</p>
+<h3 id="the-human-role">The Human Role<a class="headerlink" href="#the-human-role" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Providing conceptual frameworks and hypotheses</li>
+<li>Evaluation of interpretation quality and usefulness</li>
+<li>Suggesting refinements based on domain knowledge</li>
+</ul>
+<h3 id="the-ai-role">The AI Role<a class="headerlink" href="#the-ai-role" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Systematic exploration of network internals</li>
+<li>Pattern recognition across numerous activations</li>
+<li>Formalization of interpretations into testable predictions</li>
+</ul>
+<h2 id="implementation-status">Implementation Status<a class="headerlink" href="#implementation-status" title="Permanent link">&para;</a></h2>
+<p>Current status of implementation:</p>
+<ul>
+<li><strong>Basic Dictionary Learning</strong>: Implemented (v0.8)</li>
+<li><strong>Attribution Graph Construction</strong>: Implemented (v0.6)</li>
+<li><strong>Explanation Generation</strong>: Partial implementation (v0.4)</li>
+<li><strong>Interactive Tools</strong>: Prototype stage (v0.2)</li>
+<li><strong>Validation Framework</strong>: Design phase</li>
+</ul>
+<h2 id="future-directions">Future Directions<a class="headerlink" href="#future-directions" title="Permanent link">&para;</a></h2>
+<p>Our roadmap for future development:</p>
+<ol>
+<li><strong>Multi-Modal Interpretations</strong>: Extending techniques to vision-language models</li>
+<li><strong>Causal Tracing Improvements</strong>: Better handling of indirect causal effects</li>
+<li><strong>Automated Refinement</strong>: Developing systems to automatically refine interpretations</li>
+<li><strong>Interpretation Benchmarks</strong>: Creating standardized evaluation frameworks</li>
+<li><strong>Cross-Model Translation</strong>: Mapping interpretations between different model architectures </li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/yourusername/simplest_arc_agi" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.indexes", "toc.follow", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

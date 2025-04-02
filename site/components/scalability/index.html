@@ -1,0 +1,1918 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the Neural Circuit Extraction and Modular Composition Framework">
+      
+      
+        <meta name="author" content="ARC AGI Team">
+      
+      
+      
+        <link rel="prev" href="../training_pipeline/">
+      
+      
+        <link rel="next" href="../circuit_database/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>Scalability - Neural Circuit Extraction Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#scalability-infrastructure" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Neural Circuit Extraction Framework" class="md-header__button md-logo" aria-label="Neural Circuit Extraction Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Neural Circuit Extraction Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Scalability
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/yourusername/simplest_arc_agi" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    yourusername/simplest_arc_agi
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Neural Circuit Extraction Framework" class="md-nav__button md-logo" aria-label="Neural Circuit Extraction Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Neural Circuit Extraction Framework
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/yourusername/simplest_arc_agi" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    yourusername/simplest_arc_agi
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Components
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_generation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Generation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transformer_architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transformer Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training_pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Training Pipeline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Scalability
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Scalability
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-scalability-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Scalability Principles
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distributed-training-infrastructure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distributed Training Infrastructure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Distributed Training Infrastructure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distributed-data-parallelism" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distributed Data Parallelism
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-parallelism" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Parallelism
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipeline-parallelism" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline Parallelism
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sharded-dataset-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sharded Dataset Management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#efficient-circuit-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Efficient Circuit Analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Efficient Circuit Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distributed-activation-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distributed Activation Collection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallel-dictionary-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parallel Dictionary Learning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory-efficient-circuit-db" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory-Efficient Circuit DB
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scalable-inference-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scalable Inference Engine
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resource-monitoring-and-auto-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource Monitoring and Auto-Scaling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation Status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-directions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Directions
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../circuit_database/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Circuit Database
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../explanation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Explanation & Interpretability
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modular_composition/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modular Composition
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Implementation Roadmap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arc_evaluation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ARC Evaluation Protocol
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../future_directions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Future Directions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/data_generation.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Generation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/models.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/training.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Training
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/database.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Database
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Tutorials
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/getting_started.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/training.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Training a Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/extraction.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Extracting Circuits
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/composition.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Composing Circuits
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-scalability-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Scalability Principles
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distributed-training-infrastructure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distributed Training Infrastructure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Distributed Training Infrastructure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distributed-data-parallelism" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distributed Data Parallelism
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-parallelism" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Parallelism
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipeline-parallelism" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline Parallelism
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sharded-dataset-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sharded Dataset Management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#efficient-circuit-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Efficient Circuit Analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Efficient Circuit Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distributed-activation-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distributed Activation Collection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallel-dictionary-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parallel Dictionary Learning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory-efficient-circuit-db" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory-Efficient Circuit DB
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scalable-inference-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scalable Inference Engine
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resource-monitoring-and-auto-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource Monitoring and Auto-Scaling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation Status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-directions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Directions
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="scalability-infrastructure">Scalability Infrastructure<a class="headerlink" href="#scalability-infrastructure" title="Permanent link">&para;</a></h1>
+<p>This document outlines our approach to scaling the Neural Circuit Extraction and Modular Composition Framework across multiple dimensions: model size, dataset complexity, training throughput, and circuit analysis.</p>
+<h2 id="core-scalability-principles">Core Scalability Principles<a class="headerlink" href="#core-scalability-principles" title="Permanent link">&para;</a></h2>
+<p>Our architecture is built on these foundational scalability principles:</p>
+<ol>
+<li><strong>Horizontal Scalability</strong>: Add more compute resources to linearly increase throughput</li>
+<li><strong>Hierarchical Decomposition</strong>: Break large problems into independently solvable subproblems</li>
+<li><strong>Dynamic Resource Allocation</strong>: Allocate compute resources based on task priority and complexity</li>
+<li><strong>Incremental Processing</strong>: Process and store data incrementally rather than requiring full dataset loads</li>
+<li><strong>Smart Caching</strong>: Cache intermediate results strategically to prevent redundant computation</li>
+</ol>
+<h2 id="distributed-training-infrastructure">Distributed Training Infrastructure<a class="headerlink" href="#distributed-training-infrastructure" title="Permanent link">&para;</a></h2>
+<p>Our training infrastructure scales across multiple nodes:</p>
+<h3 id="distributed-data-parallelism">Distributed Data Parallelism<a class="headerlink" href="#distributed-data-parallelism" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DistributedTrainer</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">optimizer_fn</span><span class="p">,</span> <span class="n">world_size</span><span class="p">,</span> <span class="n">rank</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">local_model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">world_size</span> <span class="o">=</span> <span class="n">world_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="n">rank</span>
+
+        <span class="c1"># Wrap model for distributed training</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">parallel</span><span class="o">.</span><span class="n">DistributedDataParallel</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">local_model</span><span class="p">,</span>
+            <span class="n">device_ids</span><span class="o">=</span><span class="p">[</span><span class="n">rank</span><span class="p">]</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Initialize optimizer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optimizer_fn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">train_epoch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataloader</span><span class="p">,</span> <span class="n">loss_fn</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Train for one epoch with distributed data parallelism.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+        <span class="n">epoch_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+        <span class="k">for</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dataloader</span><span class="p">):</span>
+            <span class="c1"># Move data to appropriate device</span>
+            <span class="n">inputs</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">)</span>
+            <span class="n">targets</span> <span class="o">=</span> <span class="n">targets</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">)</span>
+
+            <span class="c1"># Forward pass</span>
+            <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span>
+
+            <span class="c1"># Backward pass and optimize</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+            <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+            <span class="c1"># Accumulate loss</span>
+            <span class="n">epoch_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+        <span class="c1"># Average loss across all batches</span>
+        <span class="k">return</span> <span class="n">epoch_loss</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataloader</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="model-parallelism">Model Parallelism<a class="headerlink" href="#model-parallelism" title="Permanent link">&para;</a></h3>
+<p>For very large models that don't fit on a single device:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ModelParallelTransformer</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">num_devices</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_devices</span> <span class="o">=</span> <span class="n">num_devices</span>
+
+        <span class="c1"># Split layers across devices</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">devices</span> <span class="o">=</span> <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cuda:</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_devices</span><span class="p">)]</span>
+        <span class="n">layers_per_device</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">num_layers</span> <span class="o">//</span> <span class="n">num_devices</span>
+
+        <span class="c1"># Create layer groups</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer_groups</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_devices</span><span class="p">):</span>
+            <span class="n">start_layer</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">layers_per_device</span>
+            <span class="n">end_layer</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">layers_per_device</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num_devices</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">config</span><span class="o">.</span><span class="n">num_layers</span>
+
+            <span class="c1"># Create layers for this device</span>
+            <span class="n">device_layers</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">([</span>
+                <span class="n">TransformerLayer</span><span class="p">(</span><span class="n">config</span><span class="p">)</span> 
+                <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_layer</span><span class="p">,</span> <span class="n">end_layer</span><span class="p">)</span>
+            <span class="p">])</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">devices</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">layer_groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">device_layers</span><span class="p">)</span>
+
+        <span class="c1"># Embedding on first device, output on last device</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span> <span class="o">=</span> <span class="n">TokenEmbedding</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">devices</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_layer</span> <span class="o">=</span> <span class="n">OutputLayer</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">devices</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_ids</span><span class="p">):</span>
+        <span class="c1"># Start on first device</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">input_ids</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">devices</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+        <span class="c1"># Process through layer groups</span>
+        <span class="k">for</span> <span class="n">device_idx</span><span class="p">,</span> <span class="n">layers</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer_groups</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">layers</span><span class="p">:</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">layer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+            <span class="c1"># Transfer to next device if not the last one</span>
+            <span class="k">if</span> <span class="n">device_idx</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_devices</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">next_device</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">devices</span><span class="p">[</span><span class="n">device_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">next_device</span><span class="p">)</span>
+
+        <span class="c1"># Final output projection</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_layer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="pipeline-parallelism">Pipeline Parallelism<a class="headerlink" href="#pipeline-parallelism" title="Permanent link">&para;</a></h3>
+<p>For efficient processing of very deep models:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PipelineParallelTrainer</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">partitioned_model</span><span class="p">,</span> <span class="n">optimizer_fns</span><span class="p">,</span> <span class="n">num_microbatches</span><span class="o">=</span><span class="mi">32</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">partitioned_model</span> <span class="o">=</span> <span class="n">partitioned_model</span>  <span class="c1"># List of model partitions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_stages</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">partitioned_model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_microbatches</span> <span class="o">=</span> <span class="n">num_microbatches</span>
+
+        <span class="c1"># Create optimizers for each partition</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizers</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">opt_fn</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span> 
+            <span class="k">for</span> <span class="n">model</span><span class="p">,</span> <span class="n">opt_fn</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">partitioned_model</span><span class="p">,</span> <span class="n">optimizer_fns</span><span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="c1"># Buffers for pipeline parallelism</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">activation_buffers</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">[</span><span class="kc">None</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_microbatches</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_stages</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">train_batch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">full_batch</span><span class="p">,</span> <span class="n">loss_fn</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Train using pipeline parallelism with gradient accumulation.&quot;&quot;&quot;</span>
+        <span class="c1"># Split batch into microbatches</span>
+        <span class="n">microbatches</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_split_batch</span><span class="p">(</span><span class="n">full_batch</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_microbatches</span><span class="p">)</span>
+
+        <span class="c1"># Zero gradients</span>
+        <span class="k">for</span> <span class="n">opt</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimizers</span><span class="p">:</span>
+            <span class="n">opt</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+
+        <span class="c1"># Pipeline forward and backward passes</span>
+        <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_stages</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_microbatches</span> <span class="o">-</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="c1"># Determine which microbatches and stages to process</span>
+            <span class="k">for</span> <span class="n">stage</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_stages</span><span class="p">):</span>
+                <span class="n">microbatch_idx</span> <span class="o">=</span> <span class="n">step</span> <span class="o">-</span> <span class="n">stage</span>
+
+                <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">microbatch_idx</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_microbatches</span><span class="p">:</span>
+                    <span class="c1"># Forward pass for this stage and microbatch</span>
+                    <span class="k">if</span> <span class="n">stage</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="c1"># First stage takes input from the microbatch</span>
+                        <span class="n">inputs</span> <span class="o">=</span> <span class="n">microbatches</span><span class="p">[</span><span class="n">microbatch_idx</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span>
+                            <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">partitioned_model</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span><span class="o">.</span><span class="n">device</span>
+                        <span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="c1"># Other stages take input from previous stage</span>
+                        <span class="n">inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">activation_buffers</span><span class="p">[</span><span class="n">stage</span><span class="p">][</span><span class="n">microbatch_idx</span><span class="p">]</span>
+
+                    <span class="c1"># Process through model partition</span>
+                    <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">partitioned_model</span><span class="p">[</span><span class="n">stage</span><span class="p">](</span><span class="n">inputs</span><span class="p">)</span>
+
+                    <span class="c1"># Store activation for next stage</span>
+                    <span class="k">if</span> <span class="n">stage</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_stages</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">activation_buffers</span><span class="p">[</span><span class="n">stage</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">microbatch_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">outputs</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="c1"># For last stage, compute loss and backward</span>
+                        <span class="n">targets</span> <span class="o">=</span> <span class="n">microbatches</span><span class="p">[</span><span class="n">microbatch_idx</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">outputs</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+                        <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_microbatches</span>
+                        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+
+        <span class="c1"># Apply accumulated gradients</span>
+        <span class="k">for</span> <span class="n">opt</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimizers</span><span class="p">:</span>
+            <span class="n">opt</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="sharded-dataset-management">Sharded Dataset Management<a class="headerlink" href="#sharded-dataset-management" title="Permanent link">&para;</a></h2>
+<p>For handling datasets too large to fit in memory:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ShardedDatasetManager</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_root</span><span class="p">,</span> <span class="n">shard_size_mb</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">cache_size_mb</span><span class="o">=</span><span class="mi">4096</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_root</span> <span class="o">=</span> <span class="n">data_root</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shard_size_mb</span> <span class="o">=</span> <span class="n">shard_size_mb</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="n">LRUCache</span><span class="p">(</span><span class="n">max_size_mb</span><span class="o">=</span><span class="n">cache_size_mb</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shard_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_shard_index</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_build_shard_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Build an index of all data shards.&quot;&quot;&quot;</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">shard_path</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_root</span><span class="p">,</span> <span class="s2">&quot;shard_*.index&quot;</span><span class="p">)):</span>
+            <span class="n">shard_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">shard_path</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">shard_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">shard_contents</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">item_id</span><span class="p">,</span> <span class="n">offset</span> <span class="ow">in</span> <span class="n">shard_contents</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">index</span><span class="p">[</span><span class="n">item_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">shard_id</span><span class="p">,</span> <span class="n">offset</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">index</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item_id</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve an item by ID, handling shard loading as needed.&quot;&quot;&quot;</span>
+        <span class="c1"># Check if item is in cache</span>
+        <span class="k">if</span> <span class="n">item_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">item_id</span><span class="p">]</span>
+
+        <span class="c1"># Look up shard and offset</span>
+        <span class="k">if</span> <span class="n">item_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">shard_index</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Item </span><span class="si">{</span><span class="n">item_id</span><span class="si">}</span><span class="s2"> not found in dataset&quot;</span><span class="p">)</span>
+
+        <span class="n">shard_id</span><span class="p">,</span> <span class="n">offset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shard_index</span><span class="p">[</span><span class="n">item_id</span><span class="p">]</span>
+
+        <span class="c1"># Load shard if not in memory</span>
+        <span class="n">shard_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_root</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;shard_</span><span class="si">{</span><span class="n">shard_id</span><span class="si">}</span><span class="s2">.data&quot;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">shard_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span>
+            <span class="c1"># Read item header to get size</span>
+            <span class="n">item_size</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&quot;Q&quot;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">8</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="c1"># Read item data</span>
+            <span class="n">item_data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">item_size</span><span class="p">)</span>
+
+        <span class="c1"># Deserialize item</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">item_data</span><span class="p">)</span>
+
+        <span class="c1"># Cache for future use</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">item_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
+
+        <span class="k">return</span> <span class="n">item</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_batch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item_ids</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Efficiently retrieve a batch of items, minimizing shard loads.&quot;&quot;&quot;</span>
+        <span class="c1"># Group by shard to reduce shard loading</span>
+        <span class="n">items_by_shard</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">item_id</span> <span class="ow">in</span> <span class="n">item_ids</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">item_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">shard_index</span><span class="p">:</span>
+                <span class="n">shard_id</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shard_index</span><span class="p">[</span><span class="n">item_id</span><span class="p">]</span>
+                <span class="n">items_by_shard</span><span class="p">[</span><span class="n">shard_id</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item_id</span><span class="p">)</span>
+
+        <span class="c1"># Load items, one shard at a time</span>
+        <span class="n">batch</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">shard_id</span><span class="p">,</span> <span class="n">shard_item_ids</span> <span class="ow">in</span> <span class="n">items_by_shard</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">item_id</span> <span class="ow">in</span> <span class="n">shard_item_ids</span><span class="p">:</span>
+                <span class="n">batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_item</span><span class="p">(</span><span class="n">item_id</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">batch</span>
+</code></pre></div>
+<h2 id="efficient-circuit-analysis">Efficient Circuit Analysis<a class="headerlink" href="#efficient-circuit-analysis" title="Permanent link">&para;</a></h2>
+<p>Scaling our circuit extraction and analysis pipeline:</p>
+<h3 id="distributed-activation-collection">Distributed Activation Collection<a class="headerlink" href="#distributed-activation-collection" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DistributedActivationCollector</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">layer_names</span><span class="p">,</span> <span class="n">world_size</span><span class="p">,</span> <span class="n">rank</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer_names</span> <span class="o">=</span> <span class="n">layer_names</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">world_size</span> <span class="o">=</span> <span class="n">world_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="n">rank</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hooks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_register_hooks</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">activations</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">layer_names</span><span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_register_hooks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Register forward hooks to collect activations.&quot;&quot;&quot;</span>
+        <span class="n">hooks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_named_layers</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_names</span><span class="p">:</span>
+                <span class="n">hook</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">register_forward_hook</span><span class="p">(</span>
+                    <span class="k">lambda</span> <span class="n">mod</span><span class="p">,</span> <span class="n">inp</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_save_activation</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+                <span class="p">)</span>
+                <span class="n">hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hook</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">hooks</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_save_activation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">activation</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Save activation from a layer.&quot;&quot;&quot;</span>
+        <span class="c1"># Clone and detach to avoid memory leaks</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">activations</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">activation</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">())</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">collect_activations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataloader</span><span class="p">,</span> <span class="n">batch_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Collect activations from the dataloader.&quot;&quot;&quot;</span>
+        <span class="c1"># Clear previous activations</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_names</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">activations</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dataloader</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">batch_limit</span> <span class="ow">and</span> <span class="n">batch_idx</span> <span class="o">&gt;=</span> <span class="n">batch_limit</span><span class="p">:</span>
+                    <span class="k">break</span>
+
+                <span class="c1"># Only process examples assigned to this rank</span>
+                <span class="k">if</span> <span class="n">batch_idx</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">world_size</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_device</span><span class="p">()))</span>
+
+        <span class="c1"># Gather activations from all processes</span>
+        <span class="n">all_activations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gather_activations</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">all_activations</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_gather_activations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gather activations from all processes.&quot;&quot;&quot;</span>
+        <span class="n">all_activations</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_names</span><span class="p">}</span>
+
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_names</span><span class="p">:</span>
+            <span class="c1"># Convert local activations to tensor</span>
+            <span class="n">local_acts</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activations</span><span class="p">[</span><span class="n">name</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+            <span class="c1"># All-gather to collect from all processes</span>
+            <span class="n">gathered_acts</span> <span class="o">=</span> <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">local_acts</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">world_size</span><span class="p">)]</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">distributed</span><span class="o">.</span><span class="n">all_gather</span><span class="p">(</span><span class="n">gathered_acts</span><span class="p">,</span> <span class="n">local_acts</span><span class="p">)</span>
+
+            <span class="c1"># Concatenate results</span>
+            <span class="n">all_activations</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">gathered_acts</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">all_activations</span>
+</code></pre></div>
+<h3 id="parallel-dictionary-learning">Parallel Dictionary Learning<a class="headerlink" href="#parallel-dictionary-learning" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ParallelDictionaryLearner</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_components</span><span class="p">,</span> <span class="n">sparsity_constraint</span><span class="p">,</span> <span class="n">world_size</span><span class="p">,</span> <span class="n">rank</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_components</span> <span class="o">=</span> <span class="n">n_components</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sparsity_constraint</span> <span class="o">=</span> <span class="n">sparsity_constraint</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">world_size</span> <span class="o">=</span> <span class="n">world_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="n">rank</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dictionary</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">n_iterations</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit dictionary learning model in parallel.&quot;&quot;&quot;</span>
+        <span class="c1"># Split data according to rank</span>
+        <span class="n">local_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_split_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="c1"># Initialize dictionary (same on all ranks)</span>
+        <span class="n">dictionary_shape</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_components</span><span class="p">,</span> <span class="n">local_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>  <span class="c1"># Ensure same initialization across ranks</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dictionary</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">dictionary_shape</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dictionary</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dictionary</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">iteration</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iterations</span><span class="p">):</span>
+            <span class="c1"># 1. Sparse coding step - compute local coefficients</span>
+            <span class="n">local_coeffs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sparse_encode</span><span class="p">(</span><span class="n">local_data</span><span class="p">)</span>
+
+            <span class="c1"># 2. All-reduce to get global coefficients and sufficient statistics</span>
+            <span class="n">gram_matrix</span> <span class="o">=</span> <span class="n">local_coeffs</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">local_coeffs</span>
+            <span class="n">covar_matrix</span> <span class="o">=</span> <span class="n">local_data</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">local_coeffs</span>
+
+            <span class="c1"># All-reduce statistics</span>
+            <span class="n">global_gram</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">gram_matrix</span><span class="p">)</span>
+            <span class="n">global_covar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">covar_matrix</span><span class="p">)</span>
+
+            <span class="c1"># MPI all-reduce (simplified here)</span>
+            <span class="c1"># torch.distributed.all_reduce(torch.tensor(gram_matrix), op=torch.distributed.ReduceOp.SUM)</span>
+            <span class="c1"># torch.distributed.all_reduce(torch.tensor(covar_matrix), op=torch.distributed.ReduceOp.SUM)</span>
+
+            <span class="c1"># 3. Dictionary update step (same on all processes)</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_components</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">global_gram</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># Update dictionary element</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">dictionary</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">global_covar</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span> <span class="o">/</span> <span class="n">global_gram</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+                    <span class="c1"># Normalize</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">dictionary</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">/=</span> <span class="nb">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dictionary</span><span class="p">[</span><span class="n">k</span><span class="p">]),</span> <span class="mf">1e-10</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dictionary</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_split_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Split data according to rank.&quot;&quot;&quot;</span>
+        <span class="n">n_samples</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">samples_per_rank</span> <span class="o">=</span> <span class="n">n_samples</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">world_size</span>
+        <span class="n">start_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span> <span class="o">*</span> <span class="n">samples_per_rank</span>
+        <span class="n">end_idx</span> <span class="o">=</span> <span class="n">start_idx</span> <span class="o">+</span> <span class="n">samples_per_rank</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">world_size</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">n_samples</span>
+        <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">start_idx</span><span class="p">:</span><span class="n">end_idx</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_sparse_encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute sparse codes for data using current dictionary.&quot;&quot;&quot;</span>
+        <span class="c1"># Implement sparse coding algorithm (e.g., LASSO or OMP)</span>
+        <span class="c1"># Returns coefficients matrix of shape (n_samples, n_components)</span>
+        <span class="c1"># Simplified implementation:</span>
+        <span class="n">coeffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_components</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">coeffs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_encode_sample</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">coeffs</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_encode_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Encode a single sample using orthogonal matching pursuit.&quot;&quot;&quot;</span>
+        <span class="c1"># Simplified OMP implementation</span>
+        <span class="n">residual</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">coeffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_components</span><span class="p">)</span>
+        <span class="n">selected_indices</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sparsity_constraint</span><span class="p">):</span>
+            <span class="c1"># Compute correlations with dictionary elements</span>
+            <span class="n">correlations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dictionary</span> <span class="o">@</span> <span class="n">residual</span><span class="p">)</span>
+
+            <span class="c1"># Select most correlated element not yet selected</span>
+            <span class="n">valid_indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_components</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">selected_indices</span><span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">valid_indices</span><span class="p">:</span>
+                <span class="k">break</span>
+
+            <span class="n">best_idx</span> <span class="o">=</span> <span class="n">valid_indices</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">correlations</span><span class="p">[</span><span class="n">valid_indices</span><span class="p">])]</span>
+            <span class="n">selected_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">best_idx</span><span class="p">)</span>
+
+            <span class="c1"># Least squares solution for selected dictionary elements</span>
+            <span class="n">D_selected</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dictionary</span><span class="p">[</span><span class="n">selected_indices</span><span class="p">]</span>
+            <span class="n">coeffs_selected</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">D_selected</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="n">rcond</span><span class="o">=</span><span class="kc">None</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="c1"># Update coefficients and residual</span>
+            <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">selected_indices</span><span class="p">):</span>
+                <span class="n">coeffs</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">coeffs_selected</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+
+            <span class="n">residual</span> <span class="o">=</span> <span class="n">sample</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">dictionary</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">coeffs</span>
+
+        <span class="k">return</span> <span class="n">coeffs</span>
+</code></pre></div>
+<h2 id="memory-efficient-circuit-db">Memory-Efficient Circuit DB<a class="headerlink" href="#memory-efficient-circuit-db" title="Permanent link">&para;</a></h2>
+<p>For managing large collections of neural circuits:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ScalableCircuitDatabase</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db_path</span><span class="p">,</span> <span class="n">cache_size</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db_path</span> <span class="o">=</span> <span class="n">db_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata_db</span> <span class="o">=</span> <span class="n">SqliteDict</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">db_path</span><span class="si">}</span><span class="s2">/metadata.sqlite&quot;</span><span class="p">,</span> <span class="n">autocommit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">circuit_storage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_init_storage</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">circuit_cache</span> <span class="o">=</span> <span class="n">LRUCache</span><span class="p">(</span><span class="n">max_size</span><span class="o">=</span><span class="n">cache_size</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_init_storage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the circuit storage backend.&quot;&quot;&quot;</span>
+        <span class="n">storage_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">db_path</span><span class="si">}</span><span class="s2">/circuits&quot;</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">storage_path</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">storage_path</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_circuit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">circuit_id</span><span class="p">,</span> <span class="n">circuit</span><span class="p">,</span> <span class="n">metadata</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a circuit and its metadata to the database.&quot;&quot;&quot;</span>
+        <span class="c1"># Store metadata</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata_db</span><span class="p">[</span><span class="n">circuit_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">metadata</span>
+
+        <span class="c1"># Serialize and store circuit</span>
+        <span class="n">circuit_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">circuit_storage</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">circuit_id</span><span class="si">}</span><span class="s2">.pkl&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">circuit_path</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+        <span class="c1"># Add to cache</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">circuit_cache</span><span class="p">[</span><span class="n">circuit_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">circuit</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_circuit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">circuit_id</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve a circuit by ID.&quot;&quot;&quot;</span>
+        <span class="c1"># Check cache first</span>
+        <span class="k">if</span> <span class="n">circuit_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">circuit_cache</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">circuit_cache</span><span class="p">[</span><span class="n">circuit_id</span><span class="p">]</span>
+
+        <span class="c1"># Load from storage</span>
+        <span class="n">circuit_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">circuit_storage</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">circuit_id</span><span class="si">}</span><span class="s2">.pkl&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">circuit_path</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Circuit </span><span class="si">{</span><span class="n">circuit_id</span><span class="si">}</span><span class="s2"> not found&quot;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">circuit_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">circuit</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+        <span class="c1"># Add to cache</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">circuit_cache</span><span class="p">[</span><span class="n">circuit_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">circuit</span>
+
+        <span class="k">return</span> <span class="n">circuit</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">search_circuits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query_dict</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Search circuits by metadata.&quot;&quot;&quot;</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">circuit_id</span><span class="p">,</span> <span class="n">metadata</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata_db</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">query_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">metadata</span> <span class="ow">or</span> <span class="n">metadata</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">!=</span> <span class="n">value</span><span class="p">:</span>
+                    <span class="n">match</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="k">break</span>
+
+            <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">circuit_id</span><span class="p">,</span> <span class="n">metadata</span><span class="p">))</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">limit</span><span class="p">:</span>
+                    <span class="k">break</span>
+
+        <span class="k">return</span> <span class="n">results</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_similar_circuits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">circuit_id</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;embedding&quot;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Find circuits similar to the given one.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">circuit_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata_db</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Circuit </span><span class="si">{</span><span class="n">circuit_id</span><span class="si">}</span><span class="s2"> not found&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Get source circuit&#39;s metadata</span>
+        <span class="n">source_metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata_db</span><span class="p">[</span><span class="n">circuit_id</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">metric</span> <span class="o">==</span> <span class="s2">&quot;embedding&quot;</span> <span class="ow">and</span> <span class="s2">&quot;embedding&quot;</span> <span class="ow">in</span> <span class="n">source_metadata</span><span class="p">:</span>
+            <span class="n">source_embedding</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">source_metadata</span><span class="p">[</span><span class="s2">&quot;embedding&quot;</span><span class="p">])</span>
+
+            <span class="c1"># Compute similarity to all circuits</span>
+            <span class="n">similarities</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">cid</span><span class="p">,</span> <span class="n">metadata</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata_db</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">cid</span> <span class="o">!=</span> <span class="n">circuit_id</span> <span class="ow">and</span> <span class="s2">&quot;embedding&quot;</span> <span class="ow">in</span> <span class="n">metadata</span><span class="p">:</span>
+                    <span class="n">target_embedding</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;embedding&quot;</span><span class="p">])</span>
+                    <span class="n">similarity</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">source_embedding</span><span class="p">,</span> <span class="n">target_embedding</span><span class="p">)</span>
+                    <span class="n">similarities</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">cid</span><span class="p">,</span> <span class="n">similarity</span><span class="p">,</span> <span class="n">metadata</span><span class="p">))</span>
+
+            <span class="c1"># Return top-k similar circuits</span>
+            <span class="n">similarities</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">similarities</span><span class="p">[:</span><span class="n">k</span><span class="p">]</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Fallback to tag-based similarity</span>
+            <span class="k">if</span> <span class="s2">&quot;tags&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">source_metadata</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[]</span>
+
+            <span class="n">source_tags</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">source_metadata</span><span class="p">[</span><span class="s2">&quot;tags&quot;</span><span class="p">])</span>
+            <span class="n">similarities</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="k">for</span> <span class="n">cid</span><span class="p">,</span> <span class="n">metadata</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata_db</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">cid</span> <span class="o">!=</span> <span class="n">circuit_id</span> <span class="ow">and</span> <span class="s2">&quot;tags&quot;</span> <span class="ow">in</span> <span class="n">metadata</span><span class="p">:</span>
+                    <span class="n">target_tags</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;tags&quot;</span><span class="p">])</span>
+                    <span class="n">similarity</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">source_tags</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">target_tags</span><span class="p">))</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">source_tags</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">target_tags</span><span class="p">))</span>
+                    <span class="n">similarities</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">cid</span><span class="p">,</span> <span class="n">similarity</span><span class="p">,</span> <span class="n">metadata</span><span class="p">))</span>
+
+            <span class="n">similarities</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">similarities</span><span class="p">[:</span><span class="n">k</span><span class="p">]</span>
+</code></pre></div>
+<h2 id="scalable-inference-engine">Scalable Inference Engine<a class="headerlink" href="#scalable-inference-engine" title="Permanent link">&para;</a></h2>
+<p>For running composed circuits at scale:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ScalableInferenceEngine</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">circuit_db</span><span class="p">,</span> <span class="n">max_concurrent</span><span class="o">=</span><span class="mi">8</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">circuit_db</span> <span class="o">=</span> <span class="n">circuit_db</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">executor</span> <span class="o">=</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">max_concurrent</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_circuit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">circuit_id</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run inference on a circuit in batches.&quot;&quot;&quot;</span>
+        <span class="n">circuit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">circuit_db</span><span class="o">.</span><span class="n">get_circuit</span><span class="p">(</span><span class="n">circuit_id</span><span class="p">)</span>
+
+        <span class="c1"># Process in batches</span>
+        <span class="n">all_results</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">),</span> <span class="n">batch_size</span><span class="p">):</span>
+            <span class="n">batch</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">batch_size</span><span class="p">]</span>
+            <span class="n">batch_results</span> <span class="o">=</span> <span class="n">circuit</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
+            <span class="n">all_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">batch_results</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">all_results</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_multiple_circuits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">circuit_ids</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run multiple circuits in parallel.&quot;&quot;&quot;</span>
+        <span class="n">future_to_circuit</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">run_circuit</span><span class="p">,</span> <span class="n">cid</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span> <span class="n">cid</span>
+            <span class="k">for</span> <span class="n">cid</span> <span class="ow">in</span> <span class="n">circuit_ids</span>
+        <span class="p">}</span>
+
+        <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">future_to_circuit</span><span class="p">):</span>
+            <span class="n">circuit_id</span> <span class="o">=</span> <span class="n">future_to_circuit</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">results</span><span class="p">[</span><span class="n">circuit_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">results</span><span class="p">[</span><span class="n">circuit_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span>
+
+        <span class="k">return</span> <span class="n">results</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_composed_circuit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">composition_plan</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run a composed circuit by executing subcircuits efficiently.&quot;&quot;&quot;</span>
+        <span class="c1"># Extract circuit references and connections</span>
+        <span class="n">circuit_refs</span> <span class="o">=</span> <span class="n">composition_plan</span><span class="o">.</span><span class="n">get_circuit_references</span><span class="p">()</span>
+        <span class="n">connections</span> <span class="o">=</span> <span class="n">composition_plan</span><span class="o">.</span><span class="n">get_connections</span><span class="p">()</span>
+
+        <span class="c1"># Topologically sort circuits to determine execution order</span>
+        <span class="n">execution_order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topological_sort</span><span class="p">(</span><span class="n">circuit_refs</span><span class="p">,</span> <span class="n">connections</span><span class="p">)</span>
+
+        <span class="c1"># Execute in order, caching intermediate results</span>
+        <span class="n">intermediate_results</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">circuit_ref</span> <span class="ow">in</span> <span class="n">execution_order</span><span class="p">:</span>
+            <span class="n">circuit_inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_circuit_inputs</span><span class="p">(</span><span class="n">circuit_ref</span><span class="p">,</span> <span class="n">connections</span><span class="p">,</span> <span class="n">intermediate_results</span><span class="p">,</span> <span class="n">inputs</span><span class="p">)</span>
+            <span class="n">circuit_outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_circuit</span><span class="p">(</span><span class="n">circuit_ref</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">circuit_inputs</span><span class="p">)</span>
+            <span class="n">intermediate_results</span><span class="p">[</span><span class="n">circuit_ref</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">circuit_outputs</span>
+
+        <span class="c1"># Return final outputs</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_final_outputs</span><span class="p">(</span><span class="n">composition_plan</span><span class="p">,</span> <span class="n">intermediate_results</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="resource-monitoring-and-auto-scaling">Resource Monitoring and Auto-Scaling<a class="headerlink" href="#resource-monitoring-and-auto-scaling" title="Permanent link">&para;</a></h2>
+<p>For dynamically adapting to workload requirements:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ResourceMonitor</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_utilization</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">check_interval</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">min_workers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_workers</span><span class="o">=</span><span class="mi">16</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_utilization</span> <span class="o">=</span> <span class="n">target_utilization</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_interval</span> <span class="o">=</span> <span class="n">check_interval</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_workers</span> <span class="o">=</span> <span class="n">min_workers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_workers</span> <span class="o">=</span> <span class="n">max_workers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_workers</span> <span class="o">=</span> <span class="n">min_workers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">running</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">monitor_thread</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Start the resource monitoring thread.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">running</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">running</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">monitor_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_monitor_loop</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">monitor_thread</span><span class="o">.</span><span class="n">daemon</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">monitor_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop the resource monitoring thread.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">running</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">monitor_thread</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">monitor_thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_monitor_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Main monitoring loop.&quot;&quot;&quot;</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">running</span><span class="p">:</span>
+            <span class="c1"># Check resource utilization</span>
+            <span class="n">cpu_util</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">cpu_percent</span><span class="p">(</span><span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mf">100.0</span>
+            <span class="n">mem_util</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">virtual_memory</span><span class="p">()</span><span class="o">.</span><span class="n">percent</span> <span class="o">/</span> <span class="mf">100.0</span>
+            <span class="n">gpu_util</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_gpu_utilization</span><span class="p">()</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="mi">0</span>
+
+            <span class="c1"># Determine overall utilization</span>
+            <span class="n">utilization</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">cpu_util</span><span class="p">,</span> <span class="n">mem_util</span><span class="p">,</span> <span class="n">gpu_util</span><span class="p">)</span>
+
+            <span class="c1"># Adjust worker count based on utilization</span>
+            <span class="k">if</span> <span class="n">utilization</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_utilization</span> <span class="o">*</span> <span class="mf">1.1</span><span class="p">:</span>
+                <span class="c1"># Increase workers if significantly over target</span>
+                <span class="n">new_workers</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_workers</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_workers</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">new_workers</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_workers</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">current_workers</span> <span class="o">=</span> <span class="n">new_workers</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_scale_workers</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_workers</span><span class="p">)</span>
+
+            <span class="k">elif</span> <span class="n">utilization</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_utilization</span> <span class="o">*</span> <span class="mf">0.7</span><span class="p">:</span>
+                <span class="c1"># Decrease workers if significantly under target</span>
+                <span class="n">new_workers</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_workers</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_workers</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">new_workers</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_workers</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">current_workers</span> <span class="o">=</span> <span class="n">new_workers</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_scale_workers</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_workers</span><span class="p">)</span>
+
+            <span class="c1"># Sleep before next check</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">check_interval</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_gpu_utilization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get average GPU utilization across all devices.&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">utilization</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()))</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span> <span class="o">/</span> <span class="mf">100.0</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mf">0.0</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_scale_workers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_count</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Scale worker processes to the new count.&quot;&quot;&quot;</span>
+        <span class="c1"># Implementation depends on the worker management system</span>
+        <span class="c1"># Could call Kubernetes API, Docker Swarm, or other orchestration</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scaling workers to </span><span class="si">{</span><span class="n">new_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="implementation-status">Implementation Status<a class="headerlink" href="#implementation-status" title="Permanent link">&para;</a></h2>
+<p>Current status of our scalability infrastructure:</p>
+<ul>
+<li><strong>Distributed Training</strong>: Implemented (v0.9)</li>
+<li><strong>Model Parallelism</strong>: Implemented (v0.7)</li>
+<li><strong>Pipeline Parallelism</strong>: Prototype (v0.5)</li>
+<li><strong>Sharded Dataset</strong>: Implemented (v0.8)</li>
+<li><strong>Distributed Activation Collection</strong>: Implemented (v0.8)</li>
+<li><strong>Parallel Dictionary Learning</strong>: Prototype (v0.6)</li>
+<li><strong>Scalable Circuit DB</strong>: Implemented (v0.7)</li>
+<li><strong>Scalable Inference</strong>: Prototype (v0.5)</li>
+<li><strong>Auto-scaling</strong>: Design phase (v0.2)</li>
+</ul>
+<h2 id="future-directions">Future Directions<a class="headerlink" href="#future-directions" title="Permanent link">&para;</a></h2>
+<p>Our roadmap for scalability improvements:</p>
+<ol>
+<li><strong>Hybrid Parallelism</strong>: Combining data, model, and pipeline parallelism</li>
+<li><strong>Sparse Activation Tracking</strong>: Tracking only significant activations to reduce memory usage</li>
+<li><strong>Federated Circuit Learning</strong>: Distributed circuit extraction across organizations</li>
+<li><strong>Serverless Circuit Execution</strong>: On-demand scaling of circuit inference</li>
+<li><strong>Dynamic Circuit Specialization</strong>: Adapting circuit implementations to hardware capabilities </li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/yourusername/simplest_arc_agi" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.indexes", "toc.follow", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
