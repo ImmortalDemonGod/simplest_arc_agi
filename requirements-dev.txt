@@ -39,4 +39,4 @@ line-profiler>=3.5.0
 memory-profiler>=0.60.0
 
 # Visualization for development
-graphviz>=0.19.0 
+graphviz>=0.19.0
