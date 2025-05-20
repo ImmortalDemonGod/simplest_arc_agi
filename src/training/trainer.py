@@ -150,7 +150,11 @@ class AlgorithmicTaskTrainer:
                 total_predictions += total
         
         # Compute average loss and accuracy
-        avg_loss = total_loss / len(self.test_dataloader)
+        num_batches = len(self.test_dataloader)
+        if num_batches == 0:
+            return float("nan"), 0.0
+
+        avg_loss = total_loss / num_batches
         avg_accuracy = correct_predictions / total_predictions if total_predictions > 0 else 0.0
         
         return avg_loss, avg_accuracy
