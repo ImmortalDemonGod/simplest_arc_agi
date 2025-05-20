@@ -122,7 +122,13 @@ class AlgorithmicTaskTrainer:
         return avg_loss, avg_accuracy
     
     def evaluate(self) -> Tuple[float, float]:
-        """Evaluate model on test set"""
+        """
+        Evaluates the model on the test dataset and returns average loss and accuracy.
+        
+        Returns:
+            A tuple containing the average cross-entropy loss and accuracy over the test set.
+            If the test set is empty, returns (nan, 0.0) for loss and accuracy, respectively.
+        """
         self.model.eval()
         total_loss = 0.0
         correct_predictions = 0
